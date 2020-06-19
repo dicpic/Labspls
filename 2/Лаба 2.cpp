@@ -6,9 +6,10 @@
 int main() 
 {
 
-	double a, b, X0, Xn, dx, z, max, min;
+	double a, b, X0, Xn, dx, max, min;
 	int i = 0;
-	double mas[100];
+	double mas[228];
+
 	std::cout << "a = ";
 	std::cin >> a;
 	std::cout << "b = ";
@@ -23,18 +24,12 @@ int main()
 	for (double x = X0; x <= Xn + dx; x += dx, i++) 
 	{
 		if (x <= a) 
-		{
-			z = log(x) + abs(x);
-		}
+			mas[i] = log(x) + abs(x);
 		else if (x < b) 
-		{
-			z = pow(x,3.3)*cos(x);
-		}
-		else 
-		{
-			z = pow(x,4);
-		}
-		mas[i] = z;
+			mas[i] = pow(x,3.3)*cos(x);
+			else 
+			mas[i] = pow(x,4);
+
 		if (i == 0) 
 		{
 			max = mas[0];
@@ -44,6 +39,7 @@ int main()
 			max = mas[i];
 		if (mas[i] < min)
 			min = mas[i];
+
 		std::cout << "\nmas[" << i << "] = " << mas[i];
 	}
 

@@ -7,49 +7,60 @@
 int main()
 {
 	BmpImg img;
-	setlocale(LC_ALL, "Russian");
-	std::vector<int> arr(0);
-	int i = 0, count = 0, count_main = 0;
-	char output;
-	img.read("pic10.bmp");
-	const int width = img.get_width() - 1;
-	const int height = img.get_height() - 1;
+	std::vector<int> binaryvector(0);
 
-	for (int y = 0, x; y <= height; y++)
+	img.read("pic10.bmp");
+
+	int  height = img.get_height() - 1, width = img.get_width() - 1;
+
+	for (int h = 0, w; h <= height; h++)
 	{
-		for (x = 0; x <= width; x++)
+		for (w = 0; w <= width; w++)
 		{
-			if (img.blue_at(x, y) % 2 != 0) 
-				arr.push_back(1);
+			if (img.blue_at(h, w) % 2 != 0)
+				binaryvector.push_back(1);
 			else 
-				arr.push_back(0);
+				binaryvector.push_back(0);
 			
-			if (img.green_at(x, y) % 2 != 0)
-				arr.push_back(1);
+			if (img.green_at(h, w) % 2 != 0)
+				binaryvector.push_back(1);
 			else
-				arr.push_back(0);
-			if (img.red_at(x, y) % 2 != 0)
-				arr.push_back(1);
+				binaryvector.push_back(0);
+
+			if (img.red_at(h, w) % 2 != 0)
+				binaryvector.push_back(1);
 			else
-				arr.push_back(0);
+				binaryvector.push_back(0);
 		}
 
 	}
-	output = 0;
-	for (int k = 0; i != 8; k++) {
-		if (arr[k] == 0) {
-			output = output << 1;
-			i++;
-		}
-		else {
-			output = output << 1;
-			output++;
-			i = 0;
-		}
-		if ((k + 1) % 8 == 0) {
 
-			std::cout << output;
-			output = 0;
+	char out = 0;
+
+	//for (int i = 0; i < binaryvector.size() - 1; i++)
+	//{
+	//	if (i % 8 == 0)
+	//		std::cout << " ";
+	//	std::cout << binaryvector[i];
+	//}
+
+	for (int k = 1, d = 0; d != 8; k++)
+	{
+		if (binaryvector[k-1] == 0) 
+		{
+			out = out << 1;
+			d++;
+		}
+		else 
+		{
+			out = out << 1;
+			out++;
+			d = 0;
+		}
+		if (k % 8 == 0) 
+		{
+			std::cout << out;
+			out = 0;
 		}
 	}
 	_getch();

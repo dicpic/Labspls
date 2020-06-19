@@ -53,9 +53,10 @@
 int main() 
 {
 
-	double a, b, X0, Xn, dx, z, max, min;
+	double a, b, X0, Xn, dx, max, min;
 	int i = 0;
-	double mas[100];
+	double mas[228];
+
 	std::cout << "a = ";
 	std::cin >> a;
 	std::cout << "b = ";
@@ -70,18 +71,12 @@ int main()
 	for (double x = X0; x <= Xn + dx; x += dx, i++) 
 	{
 		if (x <= a) 
-		{
-			z = log(x) + abs(x);
-		}
+			mas[i] = log(x) + abs(x);
 		else if (x < b) 
-		{
-			z = pow(x,3.3)*cos(x);
-		}
-		else 
-		{
-			z = pow(x,4);
-		}
-		mas[i] = z;
+			mas[i] = pow(x,3.3)*cos(x);
+			else 
+			mas[i] = pow(x,4);
+
 		if (i == 0) 
 		{
 			max = mas[0];
@@ -91,10 +86,11 @@ int main()
 			max = mas[i];
 		if (mas[i] < min)
 			min = mas[i];
+
 		std::cout << "\nmas[" << i << "] = " << mas[i];
 	}
 
-	std::cout << "\n\nZmax = " << max;
+	std::cout << "\nZmax = " << max;
 	std::cout << "\nZmin = " << min;
 
 	_getch();
@@ -105,9 +101,8 @@ int main()
 ![Рис.3](https://github.com/dicpic/pics/blob/master/результат.jpg?raw=true)
 
 **3\.** Определить минимальное и максимальное значение функции на указанном интервале:
-F max = 7.59375 и F min = -0.332312.
+F max = 5.0625 и F min = -0.193147.
 **4\.** 
 ![Рис.4](https://github.com/dicpic/pics/blob/master/desmos.jpg?raw=true)
->Рисунок 2 - График по заданной функции. 
 
-**Вывод:** во время данной лабораторной работы, я овладел практическими навыками разработки и программирования вычислительного процесса циклической структуры; изучил операторы ветвления и особенности использования оператора if.
+**Вывод:** Во время данной лабораторной работы, я овладел практическими навыками разработки и программирования вычислительного процесса циклической структуры; изучил операторы ветвления и особенности использования оператора if.
